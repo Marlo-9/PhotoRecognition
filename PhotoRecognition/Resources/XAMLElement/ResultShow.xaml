@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoRecognition.Resources.XAMLElement"
              mc:Ignorable="d" 
+             x:Name="This"
              d:DesignHeight="200" d:DesignWidth="1500">
     <Grid>
 
@@ -14,7 +15,7 @@
 
                 <Image Height="160"
                        Width="160"
-                       Source="{Binding }"/>
+                       Source="{Binding MainImageUri, ElementName=This}"/>
 
             </Grid>
             

@@ -25,9 +25,9 @@ namespace PhotoRecognition.Resources.XAMLElement
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty MainImageUriProperty = DependencyProperty.Register(nameof(PlaceHolder), typeof(Uri), typeof(ResultShow), new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty MainImageUriProperty = DependencyProperty.Register(nameof(MainImageUri), typeof(Uri), typeof(ResultShow), new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        public string PlaceHolder
+        public string MainImageUri
         {
             get => (string)GetValue(MainImageUriProperty);
             set => SetValue(MainImageUriProperty, value);

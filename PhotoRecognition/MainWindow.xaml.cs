@@ -2,6 +2,7 @@
 using Microsoft.Scripting.Hosting;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using PhotoRecognition.Resources.XAMLElement;
 using System;
 using System.Collections.Generic;
 using System.IO;
