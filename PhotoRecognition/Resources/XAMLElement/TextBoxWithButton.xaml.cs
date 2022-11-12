@@ -18,9 +18,6 @@ using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.
 
 namespace PhotoRecognition.Resources.XAMLElement
 {
-    /// <summary>
-    /// Логика взаимодействия для TextBoxWithButton.xaml
-    /// </summary>
     public partial class TextBoxWithButton : UserControl
     {
         public TextBoxWithButton()
@@ -65,13 +62,12 @@ namespace PhotoRecognition.Resources.XAMLElement
             string puth = "";
             TextBoxWithButton textBoxWithButton = (TextBoxWithButton)((Grid)((Button)sender).Parent).Parent;
 
-            MainWindow.OpenFolderDialog("Выберите папку с исходными данными.", ref puth);
-
-            textBoxWithButton.Text = puth;
-            textBoxWithButton.TextBoxMain.Text = puth;
-
-            Console.WriteLine("Text: " + textBoxWithButton.Text);
-            Console.WriteLine("TextBoxMain.Text: " + textBoxWithButton.TextBoxMain.Text);
+            if (MainWindow.OpenFolderDialog("Выберите папку с исходными данными.", ref puth))
+            {
+                textBoxWithButton.Text = puth;
+                textBoxWithButton.TextBoxMain.Text = puth;
+            }
+            
         }
     }
 }

@@ -108,7 +108,7 @@ namespace PhotoRecognition
             if (0 < path.Length && '\\' != path[path.Length - 1])
                 path += "\\";
 
-            return true;
+            return false;
 
         }
     }
