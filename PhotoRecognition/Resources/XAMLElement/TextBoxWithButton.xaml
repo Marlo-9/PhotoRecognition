@@ -21,7 +21,7 @@
             <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
             <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
             <Setter Property="Grid.ColumnSpan" Value="2"/>
-            <Setter Property="Padding" Value="10, 0"/>
+            <Setter Property="Padding" Value="5, 0"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -171,10 +171,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBox Style="{DynamicResource TextBoxWithButtonStyle}"
+        <TextBox x:Name="TextBoxMain"
+                 Text="{Binding Text, ElementName=This, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Style="{DynamicResource TextBoxWithButtonStyle}"
                  FontSize="{Binding FontSize, ElementName=This}"/>
 
-        <TextBlock x:Name="TextBoxPlaceHolder"
+        <TextBlock x:Name="TextBlockPlaceHolder"
                    Text="{Binding PlaceHolder, ElementName=This}"
                    FontFamily="{DynamicResource NunutoSemiBoldResources}"
                    Foreground="{DynamicResource ButtonBackground}"
@@ -185,7 +187,8 @@
                    HorizontalAlignment="Left"/>
 
         <Button Style="{DynamicResource ButtonOpenFolder}"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                Click="Click_OpenFolderDialog"/>
 
     </Grid>
 </UserControl>

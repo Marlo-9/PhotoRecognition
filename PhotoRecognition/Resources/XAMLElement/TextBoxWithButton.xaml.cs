@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 using PhotoRecognition;
+using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
 
 namespace PhotoRecognition.Resources.XAMLElement
 {
@@ -26,7 +28,7 @@ namespace PhotoRecognition.Resources.XAMLElement
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(TextBoxUnderLine),
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(TextBoxWithButton),
                                                                          new FrameworkPropertyMetadata(
                                                                              defaultValue: "",
                                                                              flags: FrameworkPropertyMetadataOptions.AffectsMeasure,
@@ -40,9 +42,9 @@ namespace PhotoRecognition.Resources.XAMLElement
 
         private static void OnTextChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            TextBoxWithButton textBoxUnderLine = (TextBoxWithButton)dependencyObject;
+            TextBoxWithButton textBoxWithButton = (TextBoxWithButton)dependencyObject;
 
-            TextBlock textBlock = textBoxUnderLine.TextBoxPlaceHolder;
+            TextBlock textBlock = textBoxWithButton.TextBlockPlaceHolder;
 
             if (textBlock != null)
             {
@@ -56,6 +58,20 @@ namespace PhotoRecognition.Resources.XAMLElement
         {
             get => (string)GetValue(PlaceHolderProperty);
             set => SetValue(PlaceHolderProperty, value);
+        }
+
+        private void Click_OpenFolderDialog(object sender, RoutedEventArgs e)
+        {
+            string puth = "";
+            TextBoxWithButton textBoxWithButton = (TextBoxWithButton)((Grid)((Button)sender).Parent).Parent;
+
+            MainWindow.OpenFolderDialog("Выберите папку с исходными данными.", ref puth);
+
+            textBoxWithButton.Text = puth;
+            textBoxWithButton.TextBoxMain.Text = puth;
+
+            Console.WriteLine("Text: " + textBoxWithButton.Text);
+            Console.WriteLine("TextBoxMain.Text: " + textBoxWithButton.TextBoxMain.Text);
         }
     }
 }

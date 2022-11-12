@@ -64,45 +64,52 @@ namespace PhotoRecognition
 
         public void PatchParameter(string path)
         {
-            var engine = Python.CreateEngine();
-            var scope = engine.CreateScope();
-
+            /*ScriptEngine engine = Python.CreateEngine();
+            ScriptEngine scope = engine.CreateScope();
             scope.SetVariable("path", path);
-
-            engine.ExecuteFile("Script.py", scope);
+            engine.ExecuteFile("Script.py", scope);*/
         }
 
         private void ScriptStart(object sender, RoutedEventArgs e)
         {
-            string path = OpenFolderDialog("Выберите папку с фотографиями");
+            string path = "";
 
-            if (path != "")
+            if (OpenFolderDialog("Выберите папку с фотографиями", ref path))
             {
                 PatchParameter(path);
-            } else
+            }
+            else
             {
                 MessageBox.Show("Папка с фотографиями не вабрана.", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
-        private string OpenFolderDialog(string title)
+        public static bool OpenFolderDialog(string title, ref string path)
         {
-            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            
-            dialog.IsFolderPicker = true;
-            dialog.RestoreDirectory = true;
-            dialog.Title = title;
-            dialog.ShowHiddenItems = true;
-            dialog.InitialDirectory = Directory.GetCurrentDirectory();
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                RestoreDirectory = true,
+                Title = title,
+                ShowHiddenItems = true,
+                InitialDirectory = Directory.GetCurrentDirectory()
+            };
 
-            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            using (dialog)
             {
-                return dialog.FileName;
+                if (Directory.Exists(path))
+                    dialog.InitialDirectory = path;
+                dynamic xRes = dialog.ShowDialog();
+                if (CommonFileDialogResult.Ok == xRes)
+                    path = dialog.FileName;
+                else if (CommonFileDialogResult.Cancel == xRes && !Directory.Exists(path))
+                    path = Environment.GetEnvironmentVariable("SYSTEMDRIVE");
             }
-            else
-            {
-                return "";
-            }
+            if (0 < path.Length && '\\' != path[path.Length - 1])
+                path += "\\";
+
+            return true;
+
         }
     }
 }
