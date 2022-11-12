@@ -46,10 +46,33 @@
             
         </Border>
 
-        <Grid x:Name="GridResult"
+        <Grid x:Name="GridStart"
               Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1"
+                  Grid.Row="1">
+
+                <xamle:TextBoxWithButton PlaceHolder="123" Width="200"/>
+
+            </Grid>
+            
+        </Grid>
+
+        <Grid x:Name="GridResult"
+              Grid.Row="1"
+              Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 

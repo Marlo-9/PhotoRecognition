@@ -66,6 +66,7 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+        
     </UserControl.Resources>
     
     <Grid Width="200">

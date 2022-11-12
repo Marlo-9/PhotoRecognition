@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="PhotoRecognition.Resources.XAMLElement.TextBoxWithButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhotoRecognition.Resources.XAMLElement"
+             mc:Ignorable="d" 
+             x:Name="This">
+    <UserControl.Resources>
+
+        <Style x:Key="TextBoxWithButtonStyle"
+               TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Main}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ButtonContent}"/>
+            <Setter Property="FontFamily" Value="{DynamicResource NunutoSemiBoldResources}"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="CaretBrush" Value="{DynamicResource ButtonContent}"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost"
+                                              Focusable="false"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              FontFamily="{TemplateBinding FontFamily}"
+                                              FontSize="{TemplateBinding FontSize}"
+                                              HorizontalScrollBarVisibility="Hidden"
+                                              VerticalScrollBarVisibility="Hidden"
+                                              VerticalContentAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ButtonOpenFolder"
+           TargetType="{x:Type Button}">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="{StaticResource ButtonContent}" />
+            <Setter Property="Background" Value="#00F0F0F0" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Width" Value="60" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="InAnimation">
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="BorderBackground"
+                                                              Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)">
+                                    <SplineColorKeyFrame KeyTime="0:0:0.3"
+                                                         Value="#0CF0F0F0" />
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Key="OutAnimation">
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="BorderBackground"
+                                                              Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)">
+                                    <SplineColorKeyFrame KeyTime="0:0:0.3"
+                                                         Value="#00F0F0F0" />
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <Grid>
+                            <Border x:Name="BorderBackground"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="0, 10, 10, 0">
+                                <Grid>
+                                    <Canvas Width="37"
+                                            Height="26"
+                                            HorizontalAlignment="Center"
+                                             VerticalAlignment="Center">
+                                        <Path Stroke="#CCD9A82F"
+                                              Fill="#D9A82F"
+                                              StrokeStartLineCap="Round"
+                                              StrokeEndLineCap="Round"
+                                              StrokeLineJoin="Round"
+                                              StrokeThickness="4"
+                                              Data="M11 1H1V25H32V4H14L11 1Z"/>
+                                        <Path Stroke="#CCFFC843"
+                                              Fill="#FFC843"
+                                              StrokeStartLineCap="Round"
+                                              StrokeEndLineCap="Round"
+                                              StrokeLineJoin="Round"
+                                              StrokeThickness="4"
+                                              Data="M36 8 L32 25 H1 L5 8 H36 Z">
+                                            <Path.Effect>
+                                                <DropShadowEffect BlurRadius="6"
+                                                                  Direction="135"
+                                                                  Color="Black"
+                                                                  ShadowDepth="3"
+                                                                  Opacity="0.4" />
+                                            </Path.Effect>
+                                        </Path>
+                                    </Canvas>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Trigger.EnterActions>
+                                    <RemoveStoryboard BeginStoryboardName="ExitStoryboardMouseOver" />
+                                    <BeginStoryboard x:Name="EnterStoryboardMouseOver" Storyboard="{StaticResource InAnimation}"/>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <RemoveStoryboard BeginStoryboardName="EnterStoryboardMouseOver" />
+                                    <BeginStoryboard x:Name="ExitStoryboardMouseOver" Storyboard="{StaticResource OutAnimation}"/>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsFocused"
+                                     Value="True">
+                                <Trigger.EnterActions>
+                                    <RemoveStoryboard BeginStoryboardName="ExitStoryboardFocused" />
+                                    <BeginStoryboard x:Name="EnterStoryboardFocused" Storyboard="{StaticResource InAnimation}"/>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <RemoveStoryboard BeginStoryboardName="EnterStoryboardFocused" />
+                                    <BeginStoryboard x:Name="ExitStoryboardFocused" Storyboard="{StaticResource OutAnimation}"/>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    
+    <Grid>
+
+        <TextBox Style="{DynamicResource TextBoxWithButtonStyle}"/>
+
+        <TextBlock x:Name="TextBoxPlaceHolder"
+                   Text="{Binding PlaceHolder, ElementName=This}"
+                   FontFamily="{DynamicResource NunutoSemiBoldResources}"
+                   Foreground="{DynamicResource ButtonBackground}"
+                   FontSize="{Binding FontSize, ElementName=This}"
+                   IsHitTestVisible="False"
+                   VerticalAlignment="Center"/>
+
+        <Button Style="{DynamicResource ButtonOpenFolder}"/>
+
+    </Grid>
+</UserControl>

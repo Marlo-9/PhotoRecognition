@@ -91,6 +91,9 @@
     <Compile Include="Resources\XAMLElement\TextBoxUnderLine.xaml.cs">
       <DependentUpon>TextBoxUnderLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\XAMLElement\TextBoxWithButton.xaml.cs">
+      <DependentUpon>TextBoxWithButton.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\XAMLElement\TextBoxUnderLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\XAMLElement\TextBoxWithButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
