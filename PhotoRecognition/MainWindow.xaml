@@ -62,7 +62,7 @@
             <Grid Grid.Column="1"
                   Grid.Row="1">
 
-                <xamle:TextBoxWithButton PlaceHolder="123" Width="200" Height="40" FontSize="24"/>
+                <xamle:TextBoxWithButton PlaceHolder="" Width="200" Height="40" FontSize="24"/>
 
             </Grid>
             
