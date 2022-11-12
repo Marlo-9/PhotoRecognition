@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PhotoRecognition;
 
 namespace PhotoRecognition.Resources.XAMLElement
 {
@@ -49,7 +50,7 @@ namespace PhotoRecognition.Resources.XAMLElement
             }
         }
 
-        public static readonly DependencyProperty PlaceHolderProperty = DependencyProperty.Register(nameof(PlaceHolder), typeof(string), typeof(TextBoxUnderLine));
+        public static readonly DependencyProperty PlaceHolderProperty = DependencyProperty.Register(nameof(PlaceHolder), typeof(string), typeof(TextBoxWithButton));
 
         public string PlaceHolder
         {
