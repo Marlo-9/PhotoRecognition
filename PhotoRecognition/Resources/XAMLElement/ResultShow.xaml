@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:PhotoRecognition.Resources.XAMLElement"
              mc:Ignorable="d" 
              x:Name="This"
-             d:DesignHeight="200" d:DesignWidth="1500">
+             VerticalAlignment="Top"
+             Margin="20">
     <UserControl.Resources>
         
         <Style x:Key="ToggleButtonExpanderShowResult"
@@ -82,66 +83,93 @@
         </Style>
 
     </UserControl.Resources>
+
     <Grid>
 
         <Border CornerRadius="10"
-                Background="{DynamicResource Level1}">
+                Background="{DynamicResource Level2}">
 
-            <Grid Margin="20">
+            <StackPanel Orientation="Vertical">
 
-                <Grid HorizontalAlignment="Left">
+                <Grid Margin="20"
+                      MaxHeight="200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                    <Viewbox>
+                    <Grid HorizontalAlignment="Left">
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
+                        <Viewbox>
 
-                            <Grid Grid.RowSpan="2"
-                                  Height="160"
-                                  Width="160">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
 
-                                <Image Stretch="UniformToFill"
-                                       Source="{Binding MainImageUri, ElementName=This}">
-                                    <Image.Clip>
-                                        <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0, 0, 160, 160"/>
-                                    </Image.Clip>
-                                </Image>
+                                <Grid Grid.RowSpan="2"
+                                      Height="160"
+                                      Width="160">
 
-                                <TextBlock Style="{DynamicResource TextBlockIMG}"
-                                           Text="IMG1"/>
+                                    <Image Stretch="UniformToFill"
+                                           Source="{Binding MainImageUri, ElementName=This}">
+                                        <Image.Clip>
+                                            <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0, 0, 160, 160"/>
+                                        </Image.Clip>
+                                    </Image>
+
+                                    <TextBlock Style="{DynamicResource TextBlockIMG}"
+                                               Text="IMG1"/>
+
+                                </Grid>
+
+                                <local:TextBoxUnderLine x:Name="TextBoxUnderLineWhaleName"
+                                                        PlaceHolder="Имя кита..."
+                                                        Text="{Binding WhaleName, ElementName=This, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        FontSize="26"
+                                                        Grid.Column="1"
+                                                        Margin="30, 0"/>
+
+                                <TextBlock Style="{DynamicResource TextBlockID}"
+                                           Text="{Binding ID, ElementName=This}"/>
 
                             </Grid>
 
-                            <local:TextBoxUnderLine x:Name="TextBoxUnderLineWhaleName"
-                                                    PlaceHolder="Имя кита..."
-                                                    Text="{Binding WhaleName, ElementName=This, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                    FontSize="26"
-                                                    Grid.Column="1"
-                                                    Margin="30, 0"/>
+                        </Viewbox>
 
-                            <TextBlock Style="{DynamicResource TextBlockID}"
-                                       Text="{Binding ID, ElementName=This}"/>
+                    </Grid>
 
-                        </Grid>
+                    <Grid Grid.Column="2"
+                          HorizontalAlignment="Right">
 
-                    </Viewbox>
+                        <ToggleButton x:Name="ToggleButtonExpander"
+                                      Style="{DynamicResource ToggleButtonExpanderShowResult}"
+                                      Click="Click_Expander"/>
 
-                </Grid>
-
-                <Grid HorizontalAlignment="Right">
-
-                    <ToggleButton Style="{DynamicResource ToggleButtonExpanderShowResult}"/>
+                    </Grid>
 
                 </Grid>
 
-            </Grid>
+                <Grid x:Name="GridContent"
+                      Grid.Row="1"
+                      Visibility="Collapsed">
+
+                    <Border Height="2"
+                            Background="{DynamicResource ButtonBackground}"
+                            Margin="40, -1, 40, 0"
+                            CornerRadius="1"
+                            VerticalAlignment="Top"/>
+
+                    <ContentControl Content="{Binding Elemets, ElementName=This}" />
+
+                </Grid>
+
+            </StackPanel>
             
         </Border>
         

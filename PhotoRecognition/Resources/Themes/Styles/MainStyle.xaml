@@ -270,7 +270,7 @@
         <Setter Property="Background" Value="#00F0F0F0" />
         <Setter Property="BorderThickness" Value="3" />
         <Setter Property="Padding" Value="5" />
-        <Setter Property="Margin" Value="10" />
+        <Setter Property="Margin" Value="5" />
         <Setter Property="Width" Value="60" />
         <Setter Property="Height" Value="60" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -299,7 +299,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="10">
-                            <Grid>
+                            <Viewbox>
                                 <Canvas Width="40"
                                         Height="40">
                                     <Path Stroke="{DynamicResource ButtonContent}"
@@ -308,7 +308,7 @@
                                           StrokeThickness="4"
                                           Data="M 8 20 L 18 10 M 8 20 L 18 30 M 8 20 L 32 20"/>
                                 </Canvas>
-                            </Grid>
+                            </Viewbox>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -347,14 +347,11 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{StaticResource ButtonContent}" />
         <Setter Property="Background" Value="#00F0F0F0" />
-        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="Margin" Value="5" />
         <Setter Property="Padding" Value="5" />
-        <Setter Property="Margin" Value="10" />
-        <Setter Property="Width" Value="60" />
-        <Setter Property="Height" Value="60" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -381,7 +378,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="10">
-                            <Grid>
+                            <Viewbox Margin="5">
                                 <Canvas Width="40"
                                         Height="40">
                                     <Path Fill="{DynamicResource ButtonContent}"
@@ -389,7 +386,7 @@
                                           StrokeEndLineCap="Round"
                                           Data="M17.1429 0C16.5117 0 16 0.511675 16 1.14286V3.8837C16 4.94999 15.2718 5.87046 14.2876 6.28073C13.3008 6.69208 12.1484 6.54897 11.3924 5.79301L9.32212 3.7227C8.87581 3.27638 8.15219 3.27638 7.70588 3.7227L3.66526 7.76331C3.21895 8.20962 3.21895 8.93324 3.66526 9.37955L5.78511 11.4994C6.52215 12.2364 6.66506 13.3589 6.26644 14.322C5.86699 15.2871 4.96507 16 3.92058 16H1.14286C0.511675 16 0 16.5117 0 17.1429V22.8571C0 23.4883 0.511675 24 1.14286 24H4.10857C5.04193 24 5.84917 24.6353 6.19501 25.5022C6.53202 26.347 6.39253 27.3218 5.74938 27.9649L3.38099 30.3333C2.93468 30.7796 2.93468 31.5032 3.38099 31.9495L7.42161 35.9902C7.86792 36.4365 8.59154 36.4365 9.03785 35.9902L10.8637 34.1642C11.7141 33.3139 13.0167 33.1723 14.121 33.6486C15.1973 34.1129 16 35.1233 16 36.2954V38.8571C16 39.4883 16.5117 40 17.1429 40H22.8571C23.4883 40 24 39.4883 24 38.8571V36.0794C24 35.0349 24.7129 34.133 25.678 33.7336C26.6411 33.3349 27.7636 33.4779 28.5006 34.2149L30.3333 36.0476C30.7796 36.4939 31.5032 36.4939 31.9495 36.0476L35.9902 32.007C36.4365 31.5607 36.4365 30.837 35.9902 30.3907L34.207 28.6076C33.451 27.8516 33.3079 26.6992 33.7193 25.7124C34.1295 24.7282 35.05 24 36.1163 24H38.8571C39.4883 24 40 23.4883 40 22.8571V17.1429C40 16.5117 39.4883 16 38.8571 16H36.2954C35.1233 16 34.1129 15.1973 33.6486 14.121C33.1723 13.0167 33.3139 11.7141 34.1642 10.8637L35.7059 9.32212C36.1522 8.87581 36.1522 8.15219 35.7059 7.70588L31.6653 3.66526C31.219 3.21895 30.4953 3.21895 30.049 3.66526L27.9649 5.74938C27.3218 6.39253 26.347 6.53202 25.5022 6.19501C24.6353 5.84917 24 5.04193 24 4.10856V1.14286C24 0.511675 23.4883 0 22.8571 0H17.1429ZM20 28.5714C24.7338 28.5714 28.5714 24.7338 28.5714 20C28.5714 15.2661 24.7338 11.4285 20 11.4285C15.2661 11.4285 11.4285 15.2661 11.4285 20C11.4285 24.7338 15.2661 28.5714 20 28.5714Z"/>
                                 </Canvas>
-                            </Grid>
+                            </Viewbox>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -415,6 +412,35 @@
                                 <BeginStoryboard x:Name="ExitStoryboardFocused" Storyboard="{StaticResource OutAnimation}"/>
                             </Trigger.ExitActions>
                         </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonMainStyle" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="{DynamicResource Main}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ButtonContent}"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontFamily" Value="{DynamicResource NunutoSemiBoldResources}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10"
+                            SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

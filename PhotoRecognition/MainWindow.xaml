@@ -59,12 +59,56 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="1"
-                  Grid.Row="1">
+            <Border Grid.Column="1"
+                    Grid.Row="1"
+                    CornerRadius="10"
+                    Background="{DynamicResource Level1}">
 
-                <xamle:TextBoxWithButton PlaceHolder="Путь к исходным данным..." Height="40" FontSize="24"/>
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition MaxWidth="20"/>
+                        <ColumnDefinition MaxWidth="40"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-            </Grid>
+                    <xamle:TextBoxWithButton PlaceHolder="Путь к исходным данным..."
+                                             Grid.ColumnSpan="3"
+                                             Height="40"
+                                             MaxWidth="658"
+                                             FontSize="24"/>
+
+                    <Button Style="{DynamicResource ButtonMainStyle}"
+                            Content="Начать проверку"
+                            Height="40"
+                            Grid.Row="2"
+                            HorizontalAlignment="Stretch"/>
+
+                    <Button Style="{DynamicResource ButtonSettings}"
+                            Height="40"
+                            Width="40"
+                            Margin="0"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"/>
+
+                    <Button Style="{DynamicResource ButtonMainStyle}"
+                            Content="Показать готовый результат"
+                            Height="40"
+                            Grid.Row="4"
+                            Grid.ColumnSpan="3"
+                            HorizontalAlignment="Stretch"
+                            Click="Click_ShowFinishedResult"/>
+
+                </Grid>
+
+            </Border>
             
         </Grid>
 
@@ -82,9 +126,14 @@
 
                 <Grid>
 
-                    <Button Style="{DynamicResource ButtonBack}"/>
+                    <Button Style="{DynamicResource ButtonBack}"
+                            Height="45"
+                            Width="45"
+                            Click="Click_BackToGridStart"/>
 
                     <Button Style="{DynamicResource ButtonSettings}"
+                            Height="45"
+                            Width="45"
                             HorizontalAlignment="Right"/>
 
                 </Grid>
@@ -96,13 +145,36 @@
                     Grid.Row="1"
                     Margin="20, 10, 20, 20">
 
-                <ListBox Style="{DynamicResource ListBoxResultShow}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <xamle:ResultShow/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <Grid>
+
+                    <ListBox Style="{DynamicResource ListBoxResultShow}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <xamle:ResultShow HorizontalAlignment="Stretch"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.OpacityMask>
+                            <LinearGradientBrush StartPoint="0.5, 0"
+                                             EndPoint="0.5, 1">
+                                <GradientStop Offset="0"
+                                          Color="Black" />
+                                <GradientStop Offset="0.15"
+                                          Color="Transparent" />
+                                <GradientStop Offset="0.85"
+                                          Color="Transparent" />
+                                <GradientStop Offset="1"
+                                          Color="Black" />
+                            </LinearGradientBrush>
+                        </ListBox.OpacityMask>
+                    </ListBox>
+
+                    <xamle:ResultShow>
+                        <!--<xamle:ResultShow.Elemets>
+                            <Border Background="red" Height="40" Width="40"/>
+                        </xamle:ResultShow.Elemets>-->
+                    </xamle:ResultShow>
+
+                </Grid>
                 
             </Border>
 

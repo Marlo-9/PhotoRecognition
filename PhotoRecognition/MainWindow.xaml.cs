@@ -103,13 +103,41 @@ namespace PhotoRecognition
                 if (CommonFileDialogResult.Ok == xRes)
                     path = dialog.FileName;
                 else if (CommonFileDialogResult.Cancel == xRes && !Directory.Exists(path))
+                {
                     path = Environment.GetEnvironmentVariable("SYSTEMDRIVE");
+                    return false;
+                }
             }
             if (0 < path.Length && '\\' != path[path.Length - 1])
                 path += "\\";
 
-            return false;
+            return true;
 
+        }
+
+        private void ShowResult()
+        {
+            GridStart.Visibility = Visibility.Collapsed;
+            GridResult.Visibility = Visibility.Visible;
+        }
+
+        private void Click_ShowFinishedResult(object sender, RoutedEventArgs e)
+        {
+            //string puth = "";
+            ShowResult();
+            //if(OpenFolderDialog("Выберите папку с результатами.", ref puth))
+            //{
+            //    ShowResult();
+            //} else
+            //{
+            //    MessageBox.Show("Папка с фотографиями не вабрана.", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //}
+        }
+
+        private void Click_BackToGridStart(object sender, RoutedEventArgs e)
+        {
+            GridStart.Visibility = Visibility.Visible;
+            GridResult.Visibility = Visibility.Collapsed;
         }
     }
 }

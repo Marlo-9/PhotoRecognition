@@ -88,6 +88,9 @@
     <Compile Include="Resources\XAMLElement\ResultShow.xaml.cs">
       <DependentUpon>ResultShow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\XAMLElement\ResultShowElement.xaml.cs">
+      <DependentUpon>ResultShowElement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\XAMLElement\TextBoxUnderLine.xaml.cs">
       <DependentUpon>TextBoxUnderLine.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\XAMLElement\ResultShow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\XAMLElement\ResultShowElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

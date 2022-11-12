@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -16,14 +17,13 @@ using System.Windows.Shapes;
 
 namespace PhotoRecognition.Resources.XAMLElement
 {
-    /// <summary>
-    /// Логика взаимодействия для ResultShow.xaml
-    /// </summary>
     public partial class ResultShow : UserControl
     {
         public ResultShow()
         {
             InitializeComponent();
+
+            Console.WriteLine(Elemets == new FrameworkPropertyMetadata(new object()));
         }
 
         public static readonly DependencyProperty MainImageUriProperty = DependencyProperty.Register(nameof(MainImageUri), typeof(Uri), typeof(ResultShow), new FrameworkPropertyMetadata(new Uri("..\\Stubs\\ResultShowMainImageStub.png", UriKind.Relative)));
@@ -62,6 +62,35 @@ namespace PhotoRecognition.Resources.XAMLElement
         {
             get => (string)GetValue(IDProperty);
             set => SetValue(IDProperty, "ID:" + value);
+        }
+
+        public static readonly DependencyProperty ElemetsProperty = DependencyProperty.Register(nameof(Elemets),
+                                                                                                typeof(object),
+                                                                                                typeof(ResultShow),
+                                                                                                new FrameworkPropertyMetadata(new FrameworkPropertyMetadata(
+                                                                                                    defaultValue: new object(),
+                                                                                                    flags: FrameworkPropertyMetadataOptions.AffectsMeasure,
+                                                                                                    propertyChangedCallback: new PropertyChangedCallback(OnElemetsChanged))));
+
+        public object Elemets
+        {
+            get => GetValue(ElemetsProperty);
+            set => SetValue(ElemetsProperty, value);
+        }
+
+        private static void OnElemetsChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        {
+            ToggleButton toggleButton = ((ResultShow)dependencyObject).ToggleButtonExpander;
+
+            if (e.NewValue == default)
+            {
+                toggleButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void Click_Expander(object sender, RoutedEventArgs e)
+        {
+            GridContent.Visibility = (bool)((ToggleButton)sender).IsChecked ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
