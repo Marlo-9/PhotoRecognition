@@ -97,6 +97,7 @@
     <Compile Include="Resources\XAMLElement\TextBoxWithButton.xaml.cs">
       <DependentUpon>TextBoxWithButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Whale.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
