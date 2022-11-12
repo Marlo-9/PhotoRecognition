@@ -88,6 +88,9 @@
     <Compile Include="Resources\XAMLElement\ResultShow.xaml.cs">
       <DependentUpon>ResultShow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\XAMLElement\TextBoxUnderLine.xaml.cs">
+      <DependentUpon>TextBoxUnderLine.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -105,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\XAMLElement\ResultShow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\XAMLElement\TextBoxUnderLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,12 +148,32 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-Black.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-BlackItalic.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-Bold.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-BoldItalic.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-ExtraBold.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-ExtraBoldItalic.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-ExtraLight.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-ExtraLightItalic.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-Italic.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-Light.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-LightItalic.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-Medium.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-MediumItalic.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-Regular.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-SemiBold.ttf" />
+    <Resource Include="Resources\Themes\Fonts\Nunito\Nunito-SemiBoldItalic.ttf" />
     <None Include="Script.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Relaxe\export_1.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Stubs\ResultShowMainImageStub.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

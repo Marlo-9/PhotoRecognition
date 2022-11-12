@@ -2,7 +2,6 @@
 using Microsoft.Scripting.Hosting;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using PhotoRecognition.Resources.XAMLElement;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,12 +26,12 @@ namespace PhotoRecognition
         {
             InitializeComponent();
 
-            var uri = new Uri("Resources\\Themes\\Colors\\Dark.xaml", UriKind.Relative);
+            //var uri = new Uri("Resources\\Themes\\Colors\\Dark.xaml", UriKind.Relative);
 
-            ResourceDictionary colorResourceDictionary = Application.LoadComponent(uri) as ResourceDictionary;
+            //ResourceDictionary colorResourceDictionary = Application.LoadComponent(uri) as ResourceDictionary;
 
-            Application.Current.Resources.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(colorResourceDictionary);
+            //Application.Current.Resources.Clear();
+            //Application.Current.Resources.MergedDictionaries.Add(colorResourceDictionary);
         }
 
         #region Size Change Events
@@ -89,7 +88,7 @@ namespace PhotoRecognition
         private string OpenFolderDialog(string title)
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-
+            
             dialog.IsFolderPicker = true;
             dialog.RestoreDirectory = true;
             dialog.Title = title;

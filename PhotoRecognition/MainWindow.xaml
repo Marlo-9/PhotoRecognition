@@ -7,27 +7,82 @@
         xmlns:xamle="clr-namespace:PhotoRecognition.Resources.XAMLElement"
         mc:Ignorable="d"
         x:Name="WindowMain"
-        Title="MainWindow" Height="450" Width="800">
+        Height="450" Width="800"
+        Style="{DynamicResource MainWindow}">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         
-        <Grid Height="30"
-              VerticalAlignment="Top">
+        <Border x:Name="TopBar"
+                Background="{DynamicResource Level1}">
 
-            <TextBlock/>
+            <Grid>
 
-            <xamle:ResultShow MainImageUri="F:\Hackaton\PhotoRecognition\PhotoRecognition\Relaxe\export_1.png"/>
+                <TextBlock Text="{Binding Title, ElementName=WindowMain}"
+                           Foreground="{DynamicResource ButtonContent}"
+                           FontFamily="{DynamicResource NunutoSemiBoldResources}"
+                           FontSize="20"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="20, 0"/>
 
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
 
-                <Button/>
-                
-                <Button/>
-                
-                <Button Style="{DynamicResource ButtonCloseStyle}"/>
+                    <Button Style="{DynamicResource ButtonMinimiLizeStyle}"
+                            Click="WindowMinimiLize"/>
 
-            </StackPanel>
+                    <Button Style="{DynamicResource ButtonMaxiLizeStyle}"
+                            Click="WindowMaxiLize"/>
+
+                    <Button Style="{DynamicResource ButtonCloseStyle}"
+                            Click="WindowClose"/>
+
+                </StackPanel>
+
+            </Grid>
             
+        </Border>
+
+        <Grid x:Name="GridResult"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Background="{DynamicResource Level1}"
+                    CornerRadius="10"
+                    Margin="20, 20, 20, 10">
+
+                <Grid>
+
+                    <Button Style="{DynamicResource ButtonBack}"/>
+
+                    <Button Style="{DynamicResource ButtonSettings}"
+                            HorizontalAlignment="Right"/>
+
+                </Grid>
+                
+            </Border>
+
+            <Border Background="{DynamicResource Level1}"
+                    CornerRadius="10"
+                    Grid.Row="1"
+                    Margin="20, 10, 20, 20">
+
+                <ListBox Style="{DynamicResource ListBoxResultShow}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <xamle:ResultShow/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
+            </Border>
+
         </Grid>
         
     </Grid>
