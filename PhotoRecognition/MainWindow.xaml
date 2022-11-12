@@ -80,8 +80,10 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                
+
+
             </Border>
+                <Button Content="Button" Height="18" Width="101" Click="ScriptStart"/>
 
         </Grid>
         
