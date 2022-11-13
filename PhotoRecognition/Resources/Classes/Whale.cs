@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,7 +47,10 @@ namespace PhotoRecognition.Resources.Classes
                     Whale whale = new Whale(Convert.ToInt32(dir.Name), files[0]);
 
                     foreach (string file in files)
+                    {
                         whale.PathsImg.Add(new Uri(file, UriKind.RelativeOrAbsolute));
+                        Console.WriteLine("file: " + file);
+                    }
 
                     Whales.Add(whale);
                 }

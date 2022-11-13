@@ -1,12 +1,15 @@
 ﻿using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
+using Microsoft.Scripting.Runtime;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static IronPython.Modules._ast;
 
 namespace PhotoRecognition
 {
@@ -26,6 +30,8 @@ namespace PhotoRecognition
         {
             InitializeComponent();
         }
+
+        Thread threadPython = new Thread(new ParameterizedThreadStart(PatchParameter));
 
         #region Size Change Events
 
@@ -78,19 +84,39 @@ namespace PhotoRecognition
             Application.Current.Resources.MergedDictionaries.Add(colorResourceDictionary);
         }
 
-        public void PatchParameter(string path)
-        {
-            /*ScriptEngine engine = Python.CreateEngine();
-            ScriptEngine scope = engine.CreateScope();
-            scope.SetVariable("path", path);
-            engine.ExecuteFile("Script.py", scope);*/
+        public static void PatchParameter(object path)
+        {;
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = @"C:\Users\lava2\AppData\Local\Programs\Python\Python38\python.exe";
+            Console.WriteLine(start.FileName);
+            start.Arguments = Directory.GetCurrentDirectory() + "/main.py " + path.ToString();
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            Process.Start(start);
         }
 
         private void ScriptStart(object sender, RoutedEventArgs e)
         {
-            if (TextBoxWithButtonDataPath.Text != "")
+            Console.WriteLine(threadPython.ThreadState);
+            if (threadPython.ThreadState != System.Threading.ThreadState.WaitSleepJoin)
             {
-                MessageBox.Show("Папка с фотографиями не вабрана.", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (threadPython.IsAlive)
+                {
+                    threadPython.Abort();
+                }
+
+                if (!Directory.Exists(TextBoxWithButtonDataPath.Text))
+                {
+                    MessageBox.Show("Папка с фотографиями не выбрана.", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    if(!threadPython.IsAlive)
+                    {
+                        threadPython = new Thread(new ParameterizedThreadStart(PatchParameter));
+                        threadPython.Start(TextBoxWithButtonDataPath.Text);
+                    }
+                }
             }
         }
 

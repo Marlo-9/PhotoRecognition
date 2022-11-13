@@ -208,11 +208,21 @@
                                                     <xamle:ResultShowElement ImageUri="{Binding AbsoluteUri}"/>
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
+                                            <ListBox.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <VirtualizingStackPanel Orientation="Vertical" />
+                                                </ItemsPanelTemplate>
+                                            </ListBox.ItemsPanel>
                                         </ListBox>
                                     </xamle:ResultShow.Elemets>
                                 </xamle:ResultShow>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
                     </ListBox>
 
                     <Border Background="{DynamicResource Level1}"
