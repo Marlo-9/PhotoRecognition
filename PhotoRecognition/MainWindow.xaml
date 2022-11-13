@@ -201,7 +201,8 @@
                                         <ListBox Style="{DynamicResource ListBoxResultShow}"
                                                  ItemsSource="{Binding PathsImg}"
                                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                 IsHitTestVisible="False">
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <xamle:ResultShowElement ImageUri="{Binding AbsoluteUri}"/>

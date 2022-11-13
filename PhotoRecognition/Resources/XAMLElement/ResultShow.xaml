@@ -114,8 +114,8 @@
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.RowSpan="2"
-                                      Height="160"
-                                      Width="160">
+                                      MaxHeight="160"
+                                      MaxWidth="160">
 
                                     <TextBlock Style="{DynamicResource TextBlockIMG}"
                                                Text="IMG1"/>
