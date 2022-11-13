@@ -22,8 +22,6 @@ namespace PhotoRecognition.Resources.XAMLElement
         public ResultShow()
         {
             InitializeComponent();
-
-            Console.WriteLine(Elemets == new FrameworkPropertyMetadata(new object()));
         }
 
         public static readonly DependencyProperty MainImageUriProperty = DependencyProperty.Register(nameof(MainImageUri), typeof(Uri), typeof(ResultShow), new FrameworkPropertyMetadata(new Uri("..\\Stubs\\ResultShowMainImageStub.png", UriKind.Relative)));
@@ -56,21 +54,32 @@ namespace PhotoRecognition.Resources.XAMLElement
             resultShowresultShow.TextBoxUnderLineWhaleName.Text = (string)dependencyObject.GetValue(WhaleNameProperty);
         }
 
-        public static readonly DependencyProperty IDProperty = DependencyProperty.Register(nameof(ID), typeof(string), typeof(ResultShow), new FrameworkPropertyMetadata("ID:0"));
+        public static readonly DependencyProperty IDProperty = DependencyProperty.Register(nameof(ID),
+                                                                                           typeof(string),
+                                                                                           typeof(ResultShow),
+                                                                                           new FrameworkPropertyMetadata(
+                                                                                               defaultValue: "ID:0",
+                                                                                               flags: FrameworkPropertyMetadataOptions.AffectsMeasure,
+                                                                                               propertyChangedCallback: new PropertyChangedCallback(OnIDChanged)));
 
         public string ID
         {
             get => (string)GetValue(IDProperty);
-            set => SetValue(IDProperty, "ID:" + value);
+            set => SetValue(IDProperty, value);
+        }
+
+        private static void OnIDChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        {
+            ((ResultShow)dependencyObject).TextBlockID.Text = "ID:" + e.NewValue;
         }
 
         public static readonly DependencyProperty ElemetsProperty = DependencyProperty.Register(nameof(Elemets),
                                                                                                 typeof(object),
                                                                                                 typeof(ResultShow),
-                                                                                                new FrameworkPropertyMetadata(new FrameworkPropertyMetadata(
-                                                                                                    defaultValue: new object(),
+                                                                                                new FrameworkPropertyMetadata(
+                                                                                                    defaultValue: null,
                                                                                                     flags: FrameworkPropertyMetadataOptions.AffectsMeasure,
-                                                                                                    propertyChangedCallback: new PropertyChangedCallback(OnElemetsChanged))));
+                                                                                                    propertyChangedCallback: new PropertyChangedCallback(OnElemetsChanged)));
 
         public object Elemets
         {
@@ -82,9 +91,12 @@ namespace PhotoRecognition.Resources.XAMLElement
         {
             ToggleButton toggleButton = ((ResultShow)dependencyObject).ToggleButtonExpander;
 
-            if (e.NewValue == default)
+            if (e.NewValue.ToString() == "System.Windows.FrameworkPropertyMetadata")
             {
                 toggleButton.Visibility = Visibility.Collapsed;
+            } else
+            {
+                toggleButton.Visibility = Visibility.Visible;
             }
         }
 

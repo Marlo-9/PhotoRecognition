@@ -25,13 +25,6 @@ namespace PhotoRecognition
         public MainWindow()
         {
             InitializeComponent();
-
-            //var uri = new Uri("Resources\\Themes\\Colors\\Dark.xaml", UriKind.Relative);
-
-            //ResourceDictionary colorResourceDictionary = Application.LoadComponent(uri) as ResourceDictionary;
-
-            //Application.Current.Resources.Clear();
-            //Application.Current.Resources.MergedDictionaries.Add(colorResourceDictionary);
         }
 
         #region Size Change Events
@@ -62,6 +55,29 @@ namespace PhotoRecognition
 
         #endregion
 
+        public static void ThemeChage(int themeNumber)
+        {
+            Uri uri;
+
+            switch (themeNumber)
+            {
+                case 0:
+                    uri = new Uri("Resources\\Themes\\Colors\\Black.xaml", UriKind.Relative);
+                    break;
+                case 1:
+                    uri = new Uri("Resources\\Themes\\Colors\\Ligth.xaml", UriKind.Relative);
+                    break;
+                default:
+                    uri = new Uri("Resources\\Themes\\Colors\\Dark.xaml", UriKind.Relative);
+                    break;
+            }
+
+            ResourceDictionary colorResourceDictionary = Application.LoadComponent(uri) as ResourceDictionary;
+
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(colorResourceDictionary);
+        }
+
         public void PatchParameter(string path)
         {
             /*ScriptEngine engine = Python.CreateEngine();
@@ -72,13 +88,7 @@ namespace PhotoRecognition
 
         private void ScriptStart(object sender, RoutedEventArgs e)
         {
-            string path = "";
-
-            if (OpenFolderDialog("Выберите папку с фотографиями", ref path))
-            {
-                PatchParameter(path);
-            }
-            else
+            if (TextBoxWithButtonDataPath.Text != "")
             {
                 MessageBox.Show("Папка с фотографиями не вабрана.", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -138,6 +148,11 @@ namespace PhotoRecognition
         {
             GridStart.Visibility = Visibility.Visible;
             GridResult.Visibility = Visibility.Collapsed;
+        }
+
+        private void Click_Settings(object sender, RoutedEventArgs e)
+        {
+            BorderSettings.Visibility = BorderSettings.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
         }
     }
 }

@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoRecognition"
         xmlns:xamle="clr-namespace:PhotoRecognition.Resources.XAMLElement"
+        xmlns:cls="clr-namespace:PhotoRecognition.Resources.Classes"
         mc:Ignorable="d"
         x:Name="WindowMain"
         Height="450" Width="800"
         Style="{DynamicResource MainWindow}">
+    <Window.DataContext>
+        <cls:ViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -59,56 +63,100 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="1"
-                    Grid.Row="1"
-                    CornerRadius="10"
-                    Background="{DynamicResource Level1}">
+            <Grid Grid.Row="1"
+                  Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-                <Grid Margin="20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition MaxWidth="20"/>
-                        <ColumnDefinition MaxWidth="40"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Border x:Name="BorderSettings"
+                        CornerRadius="0, 10, 10, 0"
+                        Grid.Column="1"
+                        Background="{DynamicResource Level1}"
+                        Margin="5, 0, 0, 0"
+                        Visibility="Collapsed">
 
-                    <xamle:TextBoxWithButton PlaceHolder="Путь к исходным данным..."
-                                             Grid.ColumnSpan="3"
-                                             Height="40"
-                                             MaxWidth="658"
-                                             FontSize="24"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                    <Button Style="{DynamicResource ButtonMainStyle}"
-                            Content="Начать проверку"
-                            Height="40"
-                            Grid.Row="2"
-                            HorizontalAlignment="Stretch"/>
+                        <TextBlock Text="Настройки"
+                                   Foreground="{DynamicResource ButtonContent}"
+                                   FontSize="30"
+                                   FontFamily="{DynamicResource NunutoSemiBoldResources}"
+                                   HorizontalAlignment="Center"
+                                   Margin="30, 10"/>
 
-                    <Button Style="{DynamicResource ButtonSettings}"
-                            Height="40"
-                            Width="40"
-                            Margin="0"
-                            Grid.Row="2"
-                            Grid.Column="2"
-                            HorizontalAlignment="Right"/>
+                        <Border Height="2"
+                                Background="{DynamicResource ButtonBackground}"
+                                CornerRadius="1"
+                                Margin="20, 0, 20, -1"
+                                VerticalAlignment="Bottom"/>
 
-                    <Button Style="{DynamicResource ButtonMainStyle}"
-                            Content="Показать готовый результат"
-                            Height="40"
-                            Grid.Row="4"
-                            Grid.ColumnSpan="3"
-                            HorizontalAlignment="Stretch"
-                            Click="Click_ShowFinishedResult"/>
+                        <xamle:ThemeChanger Grid.Row="1"/>
 
-                </Grid>
+                    </Grid>
+                    
+                </Border>
+                
+                <Border CornerRadius="10, 0, 0, 10"
+                        Background="{DynamicResource Level1}">
 
-            </Border>
+                    <Grid Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition MaxWidth="20"/>
+                            <ColumnDefinition MaxWidth="40"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <xamle:TextBoxWithButton x:Name="TextBoxWithButtonDataPath"
+                                                 PlaceHolder="Путь к исходным данным..."
+                                                 Grid.ColumnSpan="3"
+                                                 Height="40"
+                                                 MaxWidth="658"
+                                                 FontSize="24"/>
+
+                        <Button Style="{DynamicResource ButtonMainStyle}"
+                                Content="Начать проверку"
+                                Height="40"
+                                Grid.Row="2"
+                                HorizontalAlignment="Stretch"
+                                Click="ScriptStart"/>
+
+                        <Button Style="{DynamicResource ButtonSettings}"
+                                Height="40"
+                                Width="40"
+                                Margin="0"
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                HorizontalAlignment="Right"
+                                Click="Click_Settings"/>
+
+                        <Button Style="{DynamicResource ButtonMainStyle}"
+                                Content="Показать готовый результат"
+                                Height="40"
+                                Grid.Row="4"
+                                Grid.ColumnSpan="3"
+                                HorizontalAlignment="Stretch"
+                                Click="Click_ShowFinishedResult"/>
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+
             
         </Grid>
 
@@ -131,11 +179,6 @@
                             Width="45"
                             Click="Click_BackToGridStart"/>
 
-                    <Button Style="{DynamicResource ButtonSettings}"
-                            Height="45"
-                            Width="45"
-                            HorizontalAlignment="Right"/>
-
                 </Grid>
                 
             </Border>
@@ -147,33 +190,47 @@
 
                 <Grid>
 
-                    <ListBox Style="{DynamicResource ListBoxResultShow}">
+                    <ListBox Style="{DynamicResource ListBoxResultShow}"
+                             ItemsSource="{Binding PhotoModel.TestData.Whales}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <xamle:ResultShow HorizontalAlignment="Stretch"/>
+                                <xamle:ResultShow HorizontalAlignment="Stretch"
+                                                  ID="{Binding ID}"
+                                                  MainImageUri="{Binding PathsImg[0]}">
+                                    <xamle:ResultShow.Elemets>
+                                        <ListBox Style="{DynamicResource ListBoxResultShow}"
+                                                 ItemsSource="{Binding PathsImg}"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <xamle:ResultShowElement ImageUri="{Binding AbsoluteUri}"/>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </xamle:ResultShow.Elemets>
+                                </xamle:ResultShow>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                        <ListBox.OpacityMask>
+                    </ListBox>
+
+                    <Border Background="{DynamicResource Level1}"
+                            CornerRadius="10"
+                            IsHitTestVisible="False">
+                        <Border.OpacityMask>
                             <LinearGradientBrush StartPoint="0.5, 0"
                                              EndPoint="0.5, 1">
                                 <GradientStop Offset="0"
                                           Color="Black" />
-                                <GradientStop Offset="0.15"
+                                <GradientStop Offset="0.05"
                                           Color="Transparent" />
-                                <GradientStop Offset="0.85"
+                                <GradientStop Offset="0.95"
                                           Color="Transparent" />
                                 <GradientStop Offset="1"
                                           Color="Black" />
                             </LinearGradientBrush>
-                        </ListBox.OpacityMask>
-                    </ListBox>
-
-                    <xamle:ResultShow>
-                        <!--<xamle:ResultShow.Elemets>
-                            <Border Background="red" Height="40" Width="40"/>
-                        </xamle:ResultShow.Elemets>-->
-                    </xamle:ResultShow>
-
+                        </Border.OpacityMask>
+                    </Border>
                 </Grid>
                 
             </Border>

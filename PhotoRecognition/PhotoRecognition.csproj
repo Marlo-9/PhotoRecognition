@@ -85,6 +85,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Resources\Classes\Model.cs" />
+    <Compile Include="Resources\Classes\ViewModel.cs" />
+    <Compile Include="Resources\Classes\Whale.cs" />
     <Compile Include="Resources\XAMLElement\ResultShow.xaml.cs">
       <DependentUpon>ResultShow.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,9 @@
     </Compile>
     <Compile Include="Resources\XAMLElement\TextBoxWithButton.xaml.cs">
       <DependentUpon>TextBoxWithButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\XAMLElement\ThemeChanger.xaml.cs">
+      <DependentUpon>ThemeChanger.xaml</DependentUpon>
     </Compile>
     <Compile Include="Whale.cs" />
     <Page Include="MainWindow.xaml">
@@ -110,6 +116,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Themes\Colors\Ligth.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Themes\Colors\Black.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\XAMLElement\TextBoxWithButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\XAMLElement\ThemeChanger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,7 +200,9 @@
   <ItemGroup>
     <Resource Include="Relaxe\export_1.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\Result\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Stubs\ResultShowMainImageStub.png" />
   </ItemGroup>

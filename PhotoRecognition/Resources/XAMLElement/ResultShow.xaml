@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              x:Name="This"
              VerticalAlignment="Top"
-             Margin="20">
+             Margin="20" >
     <UserControl.Resources>
         
         <Style x:Key="ToggleButtonExpanderShowResult"
@@ -17,8 +17,8 @@
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="{DynamicResource ButtonContent}"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Height" Value="100"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="70"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -89,11 +89,12 @@
         <Border CornerRadius="10"
                 Background="{DynamicResource Level2}">
 
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" Width="{Binding Width, ElementName=This}">
 
                 <Grid Margin="20"
-                      MaxHeight="200">
+                      MaxHeight="160">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
@@ -116,15 +117,15 @@
                                       Height="160"
                                       Width="160">
 
+                                    <TextBlock Style="{DynamicResource TextBlockIMG}"
+                                               Text="IMG1"/>
+
                                     <Image Stretch="UniformToFill"
                                            Source="{Binding MainImageUri, ElementName=This}">
                                         <Image.Clip>
                                             <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0, 0, 160, 160"/>
                                         </Image.Clip>
                                     </Image>
-
-                                    <TextBlock Style="{DynamicResource TextBlockIMG}"
-                                               Text="IMG1"/>
 
                                 </Grid>
 
@@ -135,7 +136,8 @@
                                                         Grid.Column="1"
                                                         Margin="30, 0"/>
 
-                                <TextBlock Style="{DynamicResource TextBlockID}"
+                                <TextBlock x:Name="TextBlockID"
+                                           Style="{DynamicResource TextBlockID}"
                                            Text="{Binding ID, ElementName=This}"/>
 
                             </Grid>
@@ -165,7 +167,7 @@
                             CornerRadius="1"
                             VerticalAlignment="Top"/>
 
-                    <ContentControl Content="{Binding Elemets, ElementName=This}" />
+                    <ContentControl Content="{Binding Elemets, ElementName=This, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 </Grid>
 

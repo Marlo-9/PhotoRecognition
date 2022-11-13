@@ -5,18 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoRecognition.Resources.XAMLElement"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="1500">
+             x:Name="This"
+             MaxHeight="200">
     <Grid>
 
         <Grid Margin="20">
 
-            <Image Stretch="UniformToFill"
-                   Source="{Binding ImageUri, ElementName=This}"
-                   HorizontalAlignment="Left">
-                <Image.Clip>
-                    <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0, 0, 160, 160"/>
-                </Image.Clip>
-            </Image>
+            <Border Width="160"
+                    Height="160"
+                    CornerRadius="10"
+                    HorizontalAlignment="Left">
+                
+                <Image Stretch="UniformToFill"
+                       Source="{Binding ImageUri, ElementName=This}"
+                       HorizontalAlignment="Left">
+                    <Image.Clip>
+                        <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0, 0, 160, 160"/>
+                    </Image.Clip>
+                </Image>
+                
+            </Border>
+
 
         </Grid>
 
